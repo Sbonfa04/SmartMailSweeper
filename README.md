@@ -22,7 +22,7 @@ In più, ti può notificare su Telegram quando ricevi una nuova email importante
 2. Crea un nuovo progetto
 3. Abilita l’**API Gmail**
 4. Crea credenziali **OAuth 2.0** per app desktop
-5. Scarica il file `credentials.json` e mettilo nella root del progetto
+5. Scarica il file `client_secret_XXXXXXXXXXX.json` e mettilo nella root del progetto
 
 ---
 
@@ -43,25 +43,48 @@ pip freeze > requirements.txt
 
 ### 3. Autenticati con Gmail
 
-Lancia una prima volta lo script:
+All'interno del file `gmail_auth.py` cambia 'client_secret_XXXXXXXXXXX.json' col nome esatto del file scaricato precedentemente.
+
+Lancia una prima volta lo script `read_emails.py`:
 
 ```bash
-python gmail_auth.py
+python read_emails.py
 ```
 
 Verrà aperta una finestra del browser: autorizza l'app con il tuo account Gmail.
 Verrà creato un file `token.json` per salvare il login.
 
+In caso di errore in questa fase vai su https://console.cloud.google.com/apis/credentials/consent, nella pagina `Schermata di consenso OAuth`, controlla che sia impostata su:
+- Tipo utente: Esterno
+- Stato: In test
+
+Scorri fino alla sezione finale della pagina dove troverai `Utenti di test`:
+- Clicca su “Aggiungi utenti”
+- Inserisci il tuo indirizzo Gmail
+- Premi “Salva”
+
+Quando rilanci il tuo script `read_emails.py`, la schermata `l'app non è verificata` ti darà accesso completo cliccando su:
+
+Avanzate → Vai a [Nome app] (non sicuro)
+
 ### 4. Etichetta manualmente le email
-Usa lo script `label_emails.py` per vedere le ultime email e assegnare tu le etichette (`utile` o `inutile`).
+In caso ti mancassero, installa queste librerie in aggiunta:
+```bash
+pip install pandas tqdm
+```
+Ora usa lo script `extract_mail_to_csv.py` per vedere le ultime email e assegnare manualmente nel `CSV` creato le etichette (`utile` o `inutile`).
 Questo serve per creare un dataset personalizzato per l’addestramento.
 
 ```bash
-python label_emails.py
+python extract_mail_to_csv.py
 ```
 Dopo aver assegnato almeno 50-100 etichette, verrà generato un file `emails_dataset.csv`.
 
 ### 5. Addestra il classificatore
+In caso ti mancassero, installa queste librerie in aggiunta:
+```bash
+pip install pandas scikit-learn nltk
+```
 Lancia:
 ```bash
 python train_classifier.py
@@ -74,6 +97,7 @@ Lancia il classificatore:
 python classify_and_clean.py
 ```
 Questo script legge le ultime email, le classifica e archivia automaticamente quelle marcate come "inutile".
+In caso si vuole che le email "inutile" vengano cancellate, aprire `classify_and_clean.py` e modificare la parte finale commentata.
 
 ### 7. Ricevi notifiche Telegram (opzionale)
 
@@ -117,4 +141,5 @@ Questo progetto è distribuito con licenza MIT, sentiti libero di usarlo, modifi
 
 ## Autore
 Creato da Samuele Bonfanti.
+In caso di errori o problemi non esitare a contattarmi.
 Se ti è utile, lasciami una ⭐ su [GitHub](https://github.com/Sbonfa04) o contattami su [LinkedIn](https://www.linkedin.com/in/samuele-bonfanti-a568042b1/).
