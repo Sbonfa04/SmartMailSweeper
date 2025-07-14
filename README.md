@@ -125,11 +125,13 @@ Questo imposterà il sistema per classificare e pulire automaticamente ogni gior
 ```bash
 SmartMailSweeper/
 ├── gmail_auth.py                # Login Gmail + token
-├── label_emails.py              # Script per etichettare email
+├── read_emails.py               # Legge le prime email + login
+├── extract_emails_to_csv.py     # Crea un CSV con le email da etichettare
 ├── train_classifier.py          # Addestra il modello ML
 ├── classify_and_clean.py        # Classifica e archivia
 ├── notify_useful_emails.py      # Notifica email utili via Telegram
 ├── setup_cron_clean.sh          # Automazione cron giornaliera
+├── setup_cron_notify.sh         # Automazione cron giornaliera
 ├── model.pkl / vectorizer.pkl   # Modello e vettorizzatore ML
 ├── emails_dataset.csv           # Dataset etichettato manualmente
 ├── cron_clean_log.txt           # Log dell'automazione
