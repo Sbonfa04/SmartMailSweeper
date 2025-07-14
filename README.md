@@ -34,7 +34,7 @@ Assicurati di usare Python 3.7+ e installa i pacchetti necessari:
 pip install -r requirements.txt
 ```
 
-Se non hai il file requirements.txt, puoi generarlo così:
+Se non hai il file `requirements.txt`, puoi generarlo così:
 
 ```bash
 pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib python-telegram-bot nltk scikit-learn
@@ -50,23 +50,23 @@ python gmail_auth.py
 ```
 
 Verrà aperta una finestra del browser: autorizza l'app con il tuo account Gmail.
-Verrà creato un file token.json per salvare il login.
+Verrà creato un file `token.json` per salvare il login.
 
 ### 4. Etichetta manualmente le email
-Usa lo script label_emails.py per vedere le ultime email e assegnare tu le etichette (utile o inutile).
+Usa lo script `label_emails.py` per vedere le ultime email e assegnare tu le etichette (`utile` o `inutile`).
 Questo serve per creare un dataset personalizzato per l’addestramento.
 
 ```bash
 python label_emails.py
 ```
-Dopo aver assegnato almeno 50-100 etichette, verrà generato un file emails_dataset.csv.
+Dopo aver assegnato almeno 50-100 etichette, verrà generato un file `emails_dataset.csv`.
 
 ### 5. Addestra il classificatore
 Lancia:
 ```bash
 python train_classifier.py
 ```
-Questo crea un modello salvato in model.pkl e un vettorizzatore in vectorizer.pkl.
+Questo crea un modello salvato in `model.pkl` e un vettorizzatore in `vectorizer.pkl`.
 
 ### 6. Classifica e archivia le email
 Lancia il classificatore:
@@ -77,9 +77,9 @@ Questo script legge le ultime email, le classifica e archivia automaticamente qu
 
 ### 7. Ricevi notifiche Telegram (opzionale)
 
-1. Crea un bot con @BotFather su Telegram
-2. Ottieni il BOT_TOKEN e il tuo Telegram ID (@userinfobot)
-3. Inseriscili nello script notify_useful_emails.py
+1. Crea un bot con `@BotFather` su Telegram
+2. Ottieni il `BOT_TOKEN` e il tuo Telegram ID (utilizza `@userinfobot`)
+3. Inseriscili nello script `notify_useful_emails.py`
 
 Poi esegui:
 ```bash
@@ -88,7 +88,7 @@ python notify_useful_emails.py
 Riceverai le email utili come messaggio Telegram
 
 ### 8. Automatizza con crontab (macOS/Linux)
-Puoi usare gli script setup_cron_notify.sh e setup_cron_clean.sh per automatizzare tutto:
+Puoi usare gli script `setup_cron_notify.sh` e `setup_cron_clean.sh` per automatizzare tutto:
 ```bash
 chmod +x setup_cron_clean.sh
 ./setup_cron_clean.sh
@@ -117,4 +117,4 @@ Questo progetto è distribuito con licenza MIT, sentiti libero di usarlo, modifi
 
 ## Autore
 Creato da Samuele Bonfanti.
-Se ti è utile, lasciami una ⭐ su GitHub o contattami su LinkedIn.
+Se ti è utile, lasciami una ⭐ su [GitHub](https://github.com/Sbonfa04) o contattami su [LinkedIn](https://www.linkedin.com/in/samuele-bonfanti-a568042b1/).
